@@ -6,6 +6,7 @@
 #include <string>
 #include "cow.h"
 
+//enum class cow_purpose {dairy, meat, hide, pet};
 
 int main(){
     cow my_cow("Hildy", 7, cow_purpose::pet);

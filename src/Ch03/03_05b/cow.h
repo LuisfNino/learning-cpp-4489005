@@ -5,7 +5,6 @@
 #ifndef COW_H
 #define COW_H
 #include <string>
-#endif
 
 enum class cow_purpose {dairy, meat, hide, pet};
 
@@ -23,5 +22,7 @@ private:
     int age;
     cow_purpose purpose;
 };
+
+#endif
 
 

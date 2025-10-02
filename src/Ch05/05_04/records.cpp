@@ -1,4 +1,5 @@
 #include "records.h"
+#include <iostream>
 
 Student::Student(int the_id, std::string the_name){
     id = the_id;
@@ -94,4 +95,28 @@ float StudentRecords::get_GPA(int sid) const{
             points += get_num_grade(grd.get_grade()) * current_credits;
         }
     return (points / credits);
+}
+
+// new function get course name
+std::string StudentRecords::get_course_name(int cid) const{
+    int j = 0;
+    while (j < courses.size() && courses[j].get_id() != cid)
+        j++;
+    return courses[j].get_name();
+}
+
+// new function report card
+void StudentRecords::report_card(int sid) const{
+    float points = 0.0f, credits = 0.0f;
+    std::cout << "Report card for: " << get_student_name(sid) << std::endl;
+    for (const Grade& grd : grades)
+        if (grd.get_student_id() == sid){
+            unsigned char current_credits = get_course_credits(grd.get_course_id());
+            credits += current_credits;
+            points += get_num_grade(grd.get_grade()) * current_credits;
+            std::cout << "Course: " << get_course_name(grd.get_course_id()) << " - Grade: " << grd.get_grade() << std::endl;
+        }
+    // no need to return anything, it'a all printed on the card
+    // return (points / credits);
+    std::cout << "GPA: " << (points/credits) << std::endl;
 }
